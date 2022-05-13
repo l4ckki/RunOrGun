@@ -9,6 +9,8 @@ public class GunPickup : MonoBehaviour
     public float gunCount;
     public GameObject[] currectGuns;
     public GameObject[] wrongGuns;
+    private Vector3 wrongGunPos;
+    private Vector3 currectGunPos;
 
     void Start()
     {
@@ -17,15 +19,6 @@ public class GunPickup : MonoBehaviour
         slider.maxValue = maxGunCount;
         slider.value = 0f;
 
-        foreach(GameObject gun in currectGuns)
-        {
-            Gun.currectGun = true;
-        }
-
-        foreach(GameObject gun in wrongGuns)
-        {
-            Gun.currectGun = false;
-        }
     }
 
     void Update()
@@ -38,11 +31,12 @@ public class GunPickup : MonoBehaviour
     {
         Gun gun = other.gameObject.GetComponent<Gun>();
 
-        if (other.CompareTag("Gun") & Gun.currectGun)
+        if (other.CompareTag("GunCurrect"))
         {
             slider.value += gunCount;
 
-            if(slider.value == slider.maxValue)
+
+            if (slider.value == slider.maxValue)
             {
                 slider.value = 0f;
             }
@@ -50,14 +44,9 @@ public class GunPickup : MonoBehaviour
             gun.DestroyGun();
         }
 
-        else if (other.CompareTag("Gun") & !Gun.currectGun)
+        if (other.CompareTag("GunWrong")) 
         {
             slider.value -= gunCount;
-
-            if (slider.value == slider.maxValue)
-            {
-                slider.value = 0f;
-            }
 
             gun.DestroyGun();
         }
@@ -81,14 +70,17 @@ public class GunPickup : MonoBehaviour
 
     private void SwitchGuns()
     {
-        foreach(GameObject gun in currectGuns)
+        for (int i = 0; i < currectGuns.Length; i++)
         {
-            Gun.currectGun = false;
-        }
+            Debug.Log("SwapGuns");
 
-        foreach (GameObject gun in wrongGuns)
-        {
-            Gun.currectGun = true;
+            wrongGunPos = wrongGuns[i].transform.position;
+            currectGunPos = currectGuns[i].transform.position;
+
+
+            currectGuns[i].transform.position = wrongGunPos;
+            wrongGuns[i].transform.position = currectGunPos;
+
         }
     }
 }

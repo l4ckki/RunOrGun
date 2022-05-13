@@ -7,6 +7,8 @@ TagManager:
   - Gun
   - WhatGun1
   - WhatGun2
+  - GunCurrect
+  - GunWrong
   layers:
   - Default
   - TransparentFX

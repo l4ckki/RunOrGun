@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    static public bool currectGun;
+
 
     public void DestroyGun()
     {
