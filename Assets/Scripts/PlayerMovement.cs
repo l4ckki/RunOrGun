@@ -4,20 +4,41 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject player;
-    private Vector3 deltaPos;
+    public Transform target;
+    public Transform camFightPos;
+    private Vector3 deltaY;
 
-
-    void Start()
+    private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        deltaPos = new Vector3(0f, -4.5f, 7.75f);
+        deltaY = new Vector3(0f, -3f, 15f);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        player.GetComponent<Rigidbody>().AddForce(0f, 0f, 6f);
-        gameObject.transform.position = player.transform.position - deltaPos;
+
+        if (Player.isFight == false)
+        {
+            CameraFollow();
+        }
+
+        else
+        {
+            CameraFight();
+        }
     }
+
+
+    private void CameraFollow()
+    {
+        transform.position = target.position - deltaY;
+        transform.LookAt(target);
+    }
+
+    private void CameraFight()
+    {
+        transform.position = camFightPos.position;
+        transform.rotation = camFightPos.rotation;
+
+    }
+
 }

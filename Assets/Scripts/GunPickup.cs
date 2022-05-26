@@ -7,8 +7,8 @@ public class GunPickup : MonoBehaviour
     public Slider slider;
     public float maxGunCount;
     public float gunCount;
-    public GameObject[] currectGuns;
     public GameObject[] wrongGuns;
+    public GameObject[] currectGuns;
     private Vector3 wrongGunPos;
     private Vector3 currectGunPos;
 
@@ -19,34 +19,30 @@ public class GunPickup : MonoBehaviour
         slider.maxValue = maxGunCount;
         slider.value = 0f;
 
-    }
+        foreach(GameObject pistol in wrongGuns)
+        {
 
-    void Update()
-    {
-        
+            pistol.GetComponent<Gun>().currectGun = false;
+        }
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
+        GunSwitcher gunSwitcher = gameObject.GetComponent<GunSwitcher>();
         Gun gun = other.gameObject.GetComponent<Gun>();
 
-        if (other.CompareTag("GunCurrect"))
+
+        if (gun & gun.currectGun == true)
         {
-            slider.value += gunCount;
-
-
-            if (slider.value == slider.maxValue)
-            {
-                slider.value = 0f;
-            }
+            PlusGun();
 
             gun.DestroyGun();
         }
 
-        if (other.CompareTag("GunWrong")) 
+        else if (gun & gun.currectGun == false) 
         {
-            slider.value -= gunCount;
+            MinusGun();
 
             gun.DestroyGun();
         }
@@ -62,25 +58,58 @@ public class GunPickup : MonoBehaviour
 
         if (other.CompareTag("WhatGun2"))
         {
-            SwitchGuns();
+
+            GunSwitch();
 
             gun.DestroyGun();
         }
+
     }
 
-    private void SwitchGuns()
+    public void GunSwitch()
     {
         for (int i = 0; i < currectGuns.Length; i++)
         {
             Debug.Log("SwapGuns");
 
             wrongGunPos = wrongGuns[i].transform.position;
-            currectGunPos = currectGuns[i].transform.position;
+            currectGunPos = wrongGuns[i].transform.position;
 
 
             currectGuns[i].transform.position = wrongGunPos;
             wrongGuns[i].transform.position = currectGunPos;
 
+
+
+        }
+
+        foreach (GameObject pistol in wrongGuns)
+        {
+
+            pistol.GetComponent<Gun>().currectGun = true;
+        }
+
+        foreach (GameObject rifle in currectGuns)
+        {
+
+            rifle.GetComponent<Gun>().currectGun = false;
+        }
+    }
+
+    public void MinusGun()
+    {
+        slider.value -= gunCount;
+
+    }
+
+    private void PlusGun()
+    {
+        slider.value += gunCount;
+
+
+        if (slider.value == slider.maxValue)
+        {
+            slider.value = 0f;
         }
     }
 }
