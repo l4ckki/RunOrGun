@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7510528619861027392}
   - component: {fileID: 7510528619860060288}
   - component: {fileID: 2660429082025243657}
-  - component: {fileID: 3662518934537083790}
   m_Layer: 0
   m_Name: PistolPBR
   m_TagString: Untagged
@@ -96,15 +95,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07767418, y: 0.34218383, z: 0.5385294}
   m_Center: {x: -0.003842963, y: 0.046935882, z: 0.2005221}
---- !u!114 &3662518934537083790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7510528619858064960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13190798566a461479b4993d6ccfbab3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

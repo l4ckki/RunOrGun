@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         isFight = false;
-        zForce = 500f;
+        zForce = 350f;
     }
 
     private void Update()

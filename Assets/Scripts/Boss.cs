@@ -6,6 +6,8 @@ public class Boss : MonoBehaviour
 {
     public GameObject projectile;
     public Transform projectileZone;
+    private float posX;
+    private float posZ;
     private IEnumerator attack;
     private bool bossAlive;
     private bool isTouched;
@@ -46,6 +48,7 @@ public class Boss : MonoBehaviour
         if(health <= 0)
         {
             Destroy(this.gameObject);
+            bossAlive = false;
         }
     }
 
@@ -74,9 +77,12 @@ public class Boss : MonoBehaviour
 
             Debug.Log("Spawn");
 
-            projectile.transform.position = projectileZone.transform.position + new Vector3(Random.Range(0, 10f), 10f, Random.Range(0, 10f));
+            posX = projectileZone.position.x + Random.Range(-5f, 7f);
+            posZ = projectileZone.position.z + Random.Range(-5f, 7f); 
 
-            yield return new WaitForSeconds(1f);
+            projectile.transform.localPosition = projectileZone.transform.position + new Vector3(posX, 15f, posZ);
+
+            yield return new WaitForSeconds(0.7f);
         }
     }
 }

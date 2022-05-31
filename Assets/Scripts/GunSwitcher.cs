@@ -16,13 +16,11 @@ public class GunSwitcher : MonoBehaviour
             Debug.Log("SwapGuns");
 
             wrongGunPos = wrongGuns[i].transform.position;
-            currectGunPos = wrongGuns[i].transform.position;
+            currectGunPos = currectGuns[i].transform.position;
 
 
-            currectGuns[i].transform.position = wrongGunPos;
             wrongGuns[i].transform.position = currectGunPos;
-
-
+            currectGuns[i].transform.position = wrongGunPos;
 
         }
 
