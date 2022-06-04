@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3104845761389411491}
   - component: {fileID: 2338757592863198852}
   - component: {fileID: 554785491996127685}
+  - component: {fileID: 40421829272211824}
   m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
@@ -61,3 +62,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivotPoint: {fileID: 0}
+--- !u!65 &40421829272211824
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3104845761389411492}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

@@ -5,7 +5,6 @@ using UnityEngine;
 public class TargetMove : MonoBehaviour
 {
     private Rigidbody t_rb;
-    public GameObject pivotPoint;
 
     private void Awake()
     {

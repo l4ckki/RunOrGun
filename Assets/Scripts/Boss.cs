@@ -5,13 +5,14 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     public GameObject projectile;
+    public GameObject projectileLight;
     public Transform projectileZone;
     private float posX;
     private float posZ;
     private IEnumerator attack;
     private bool bossAlive;
     private bool isTouched;
-    private float health = 100f;
+    public float health = 10f;
 
     private void Start()
     {
@@ -52,14 +53,6 @@ public class Boss : MonoBehaviour
         }
     }
 
-
-    private void Attack()
-    {
-
-
-
-    }
-
     private void TakeDamage()
     {
 
@@ -74,15 +67,17 @@ public class Boss : MonoBehaviour
         while (bossAlive)
         {
             Instantiate(projectile);
+            Instantiate(projectileLight);
 
-            Debug.Log("Spawn");
-
-            posX = projectileZone.position.x + Random.Range(-5f, 7f);
-            posZ = projectileZone.position.z + Random.Range(-5f, 7f); 
+            posX = Random.Range(-3f, 3.5f);
+            posZ = Random.Range(-3f, 3.5f); 
 
             projectile.transform.localPosition = projectileZone.transform.position + new Vector3(posX, 15f, posZ);
+            projectileLight.transform.position = projectile.transform.position - new Vector3(0f, 11.3f, 0f);
 
-            yield return new WaitForSeconds(0.7f);
+            
+
+            yield return new WaitForSeconds(0.6f);
         }
     }
 }

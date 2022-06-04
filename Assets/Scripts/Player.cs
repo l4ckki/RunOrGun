@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     public static bool isFight;
     [SerializeField] static public float zForce;
     private float moveSpeed;
+    public Text speedText;
     private SwerveInputSystem _swerveInputSystem;
     [SerializeField] private float swerveSpeed = 0.5f;
     [SerializeField] private float maxSwerveAmount = 1f;
@@ -30,7 +32,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-
+        speedText.text = "Speed" + swerveSpeed;
     }
 
     private void FixedUpdate()
@@ -74,4 +76,13 @@ public class Player : MonoBehaviour
         p_rb.angularVelocity = Vector3.zero;
     }
 
-}
+
+    public void AddSpeed()
+    {
+        swerveSpeed++;
+        maxSwerveAmount = swerveSpeed * 2;
+
+    }
+
+
+}   
